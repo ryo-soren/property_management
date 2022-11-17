@@ -1,29 +1,29 @@
-<%= form_with(model: @property) do |form| %>
-  <div>
+<%= form_with model: @property, class: "formInput" do |form| %>
+  <div class="formInput form-group">
     <%= form.label :name%>
     <%= form.text_field :name%>
   </div>
-  <div>
+  <div class="formInput form-group">
     <%= form.label :description%>
     <%= form.text_area :description%>
   </div>
-  <div>
+  <div class="formInput form-group">
     <%= form.label :location%>
     <%= form.text_field :location%>
   </div>
-  <div>
+  <div class="formInput form-group">
     <%= form.label :image_url%>
     <%= form.text_field :image_url%>
   </div>
-  <div>
+  <div class="formInput form-group">
     <%= form.label :amenities%>
     <%= form.text_field :amenities%>
   </div>
-  <div>
+  <div class="formInput form-group">
     <%= form.label :price%>
     <%= form.number_field :price%>
   </div>
-  <div>
-    <%= form.submit %>
+  <div class="formInput form-group">
+      <%= form.submit "Create Property Listing", class: "btn btn-outline-primary btn-size-larger" %>
   </div>
 <% end %>

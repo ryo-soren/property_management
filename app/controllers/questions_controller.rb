@@ -11,7 +11,7 @@ before_action :authenticate_user!, except: [:index, :show]
 
 before_action :authorize_user!, only:[:edit, :update, :destroy]
 
-# ------------->    CREATE    <-------------
+# ------------->    CREATE    <-----rails --------
 def new 
   @question = Question.new
 end
