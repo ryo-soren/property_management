@@ -7,8 +7,7 @@ Rails.application.routes.draw do
 
   resources :properties do
     resources :questions do
-      resources :answers do
-      end
+      resources :answers, only: [:create]
     end
   end
 
