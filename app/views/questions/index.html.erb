@@ -1,0 +1,9 @@
+<h1>Questions Index Page</h1>
+
+
+<% @questions.each do |question| %>
+  <div>
+    <h2><%= link_to  property_question_path(question) %></h2>
+    <%#             older syntax -> question_path(question) %>
+  </div>
+<% end %>

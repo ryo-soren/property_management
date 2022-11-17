@@ -1,5 +1,29 @@
-<h1>Properties#new</h1>
-<p>Find me in app/views/properties/new.html.erb</p>
-
- <%= render 'partials/form' %> 
-
+<%= form_with(model: @property) do |form| %>
+  <div>
+    <%= form.label :name%>
+    <%= form.text_field :name%>
+  </div>
+  <div>
+    <%= form.label :description%>
+    <%= form.text_area :description%>
+  </div>
+  <div>
+    <%= form.label :location%>
+    <%= form.text_field :location%>
+  </div>
+  <div>
+    <%= form.label :image_url%>
+    <%= form.text_field :image_url%>
+  </div>
+  <div>
+    <%= form.label :amenities%>
+    <%= form.text_field :amenities%>
+  </div>
+  <div>
+    <%= form.label :price%>
+    <%= form.number_field :price%>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
