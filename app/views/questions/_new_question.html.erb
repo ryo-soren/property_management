@@ -1,11 +1,11 @@
 <h3>Questions</h3>
-<% if @question.errors.any? %>
+ <% if @question.errors.any? %>
   <ul>
     <% @question.errors.full_messages.each do |msg| %>
       <li> <%= msg %></li>
     <% end %> 
   </ul>
-<% end %>
+<% end %> 
 
 <%= form_with(model:[@property, @question]) do |f| %>  
   <div>
