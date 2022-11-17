@@ -1,0 +1,24 @@
+<h1>This is the Admin Panel</h1>
+
+<div class="container">
+  <div class="show-property card-container">
+    <!-- Styles for the Admin -->
+    <h1>Your Listed Properties</h1>
+    
+    <% if current_user.present? %>    
+      <% if is_admin? %> 
+        <% @properties.each do |p| %> 
+            <%= link_to p, class: "card flex-fill col-lg-3 col-md-4 col-12 p-4 mt-4 mx-2" do %>
+            <p>Property Name: <%= p.name %> </p>
+            <p>Property Description: <%= p.description %> </p>
+            <p><%= p.price %> </p>
+            <p><%= p.location %> </p>
+            <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <!-- Styles for the Client -->
+ 
+    </div>
+  </div>  

@@ -1,10 +1,9 @@
 <div class="container">
   <div class="show-property">
-    <h1 class="mt-4"><%= @property.name %></h1>
-      <h4><%= @property.name %></h4>
+      <h2><%= @property.name %></h4>
         <p class="text-card"><span class="bold">Property Description: </span><%= @property.description %></p> 
         <p class="show-text"><span class="bold">Property Listing By: </span><%= @property.user.first_name %> <%= @property.user.last_name %>
-        <p><span class="bold">Price: </span><%= number_to_currency(@property.price) %></p> 
+        <p class="show-text"><span class="bold">Price: </span><%= number_to_currency(@property.price) %></p> 
         <p class="show-text"><span class="bold">Location: </span><%= @property.location %></p> 
         <p class="show-text"><span class="bold">Amenities: </span><%= @property.amenities %></p> 
         <p class="show-text"><span class="bold">Listed At: </span><%= time_ago_in_words @property.created_at %> ago</p> 
@@ -29,11 +28,18 @@
         <div>
           Asked by <%= question.user.first_name %> <%= time_ago_in_words(question.created_at)%> ago
         </div>
-        <br>
+
         <% if can? :crud, question %>
           <%= button_to "Delete", property_question_path(@property.id, question.id), method: :delete, form: {data: {turbo_confirm: "Are you sure?"}} %>
          <% end %> 
-        <br>
+
+         
+        <%= question.answers.each do |a| %>          
+            <p><%= a.answer %> </p>        
+            <div>Answer by: </div>
+         <% end %> 
+
+        
         <br>
       <% end %>
     </li>

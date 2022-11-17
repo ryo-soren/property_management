@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
     def admin_panel
         @user = current_user
+        @properties = Property.where(:user_id => current_user.id)
     end
 
     private

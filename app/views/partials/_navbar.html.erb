@@ -1,8 +1,15 @@
 <nav class="nav-list">
   <ul class="nav-list">
     
-    <li class="nav-item"><a href="/properties"> <%= image_tag("shaking_hands.png", class: "logo-img")  %> </a></li>
-    <div class="nav-item"><a href="/properties/new">List A New Property</a></div>
+    <li class="nav-item"><a href="/properties"> <%= image_tag("shaking_hands.png", class: "logo-img")  %> </a></li> 
+    <% if current_user.present? %>    
+      <% if is_admin? %> 
+        <div class="nav-item"><a href="/properties/new">List A New Property</a></div>                   
+        <%= link_to "Admin Panel", ("/users/#{current_user.id}/admin_panel") %>   
+       
+    <% end %> 
+    <% end %> 
+    
     <div class="nav-item"><a href="/properties">View All Properties</a></div>
 
   </ul>
