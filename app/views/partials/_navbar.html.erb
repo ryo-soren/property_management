@@ -1,7 +1,7 @@
 <nav class="nav-list">
   <ul class="nav-list">
     <li class="nav-item"><a href="/properties"> <%= image_tag("shaking_hands.png") %> </a></li>
-    <li class="nav-item"><%= link_to "Sign Up", new_users_path %></li>  
+    <li class="nav-item"><%= link_to "Sign Up", new_user_path %></li>  
     <li class="nav-item">
       <% if(user_signed_in?) %> Hello <%= current_user.first_name %> <%=
       link_to "Log Out", session_path, data: {turbo_method: :delete } %> <% else %> <%=
