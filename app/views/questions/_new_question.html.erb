@@ -9,7 +9,7 @@
 
 <%= form_with(url:[property_questions_path]) do |f| %>  
   <div>
-    <%= f.text_area :body, cols: 50, rows: 5, placeholder:"Whats your question about this property?" %>
+    <%= f.text_area :question, cols: 50, rows: 5, placeholder:"Whats your question about this property?" %>
   </div>
   <%= f.submit "Submit", class: "btn btn-outline-primary my-2" %>
 <% end %>

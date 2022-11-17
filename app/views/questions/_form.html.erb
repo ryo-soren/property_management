@@ -14,16 +14,11 @@
    (e.g. <input type="text" name="question[title]" id="question_title"> => { "question": { "title": "What?"} })
 %>  
 
-<%= form_with(model: @question) do |form| %>
+<%= form_with(url: property_questions_path) do |form| %>
   <div>
-    <%= form.label :title %>
+    <%= form.label :question %>
     <br>
-    <%= form.text_field :title %>
-  </div>
-  <div>
-    <%= form.label :body %>
-    <br>
-    <%= form.text_area :body, cols:50, rows: 5 %>
+    <%= form.text_area :question, cols:50, rows: 5 %>
   </div>
   <%= form.submit %>
 

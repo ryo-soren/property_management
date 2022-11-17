@@ -1,14 +1,19 @@
 class PropertiesController < ApplicationController
 
   before_action :find_property, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :check_admin, only: [:new, :create]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
+
+
       def index
           @properties = Property.all.order(created_at: :desc)
       end
 
 
       def show
-
-
+        @questions = @property.questions.order(created_at: :desc)
+        @question = Question.new
       end
 
       def new
@@ -66,5 +71,14 @@ class PropertiesController < ApplicationController
           :amenities,
           :image_url
       )
+  end
+
+  def check_admin
+        redirect_to root_path, alert: "Not authorized" unless current_user.admin?
+  end
+
+  def authorize_user!
+    redirect_to @property, alert: "Not authorized" unless can?(:crud, @property)
+
   end
 end
