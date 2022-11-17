@@ -1,7 +1,6 @@
-
-<% if current_user %>
-    <p>Hello <%=current_user.full_name%></p>
-    <%= button_to "Log Out", session_path, method: :delete%>
+<%@properties.each do |property|%>
+  <img src="<%=property.image_url%>" alt="">
+  <h3><%=link_to property.name, property_path(property.id)%></h3>
+  <p>Description: <%=property.description%></p>
+  <p>Price: <%=property.price%></p>
 <% end %>
-
-
