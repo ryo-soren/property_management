@@ -21,7 +21,7 @@
   </div>  
 
 <%= render 'questions/new_question' %> 
-
+<h3>Questions</h3>
   <ul>
     <% @questions.each do |question| %>
     <li>
@@ -29,10 +29,22 @@
         <div>
           Asked by <%= question.user.first_name %> <%= time_ago_in_words(question.created_at)%> ago
         </div>
+        <%= render 'questions/answer_form' %> 
         <br>
         <% if can? :crud, question %>
           <%= button_to "Delete", property_question_path(@property.id, question.id), method: :delete, form: {data: {turbo_confirm: "Are you sure?"}} %>
          <% end %> 
+        <% question.answers.order(created_at: :desc).each do |answer|%>
+          <h5>Answers</h5>
+          <li class="my-2">
+            <small>
+              <%= answer.answer %>
+              <div>
+                Answered by <%= answer.user.first_name %> <%= time_ago_in_words(answer.created_at)%> ago
+              </div>
+            </small>
+          </li>
+        <% end %>
         <br>
         <br>
       <% end %>

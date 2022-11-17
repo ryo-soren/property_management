@@ -1,0 +1,8 @@
+<%= form_with(url: property_question_answers_path) do |form| %>
+  <div>
+    <%= form.label :answer %>
+    <br>
+    <%= form.text_area :answer, cols:50, rows: 2 %>
+  </div>
+  <%= form.submit %>
+<% end %>
