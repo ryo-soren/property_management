@@ -5,9 +5,11 @@ class QuestionsController < ApplicationController
 # ------------->    CALLBACKS   <-------------
 before_action :find_question, only: [:edit, :update, :show, :destroy]
 
-# before_action :authenticate_user!, except: [:index, :show]
+before_action :find_property, only: [:edit, :update, :create, :show, :destroy]
 
-# before_action :authorize_user!, only:[:edit, :update, :destroy]
+before_action :authenticate_user!, except: [:index, :show]
+
+before_action :authorize_user!, only:[:edit, :update, :destroy]
 
 # ------------->    CREATE    <-------------
 def new 
@@ -16,11 +18,12 @@ end
 
 def create
   @question = Question.new(question_params)
+  @question.property = @property
   @question.user = current_user
   
   if @question.save
     flash[:success] = "Question successfully created"
-    redirect_to @question
+    redirect_to @property
 
   else
     flash[:error] = "Something went wrong"
@@ -66,13 +69,14 @@ def find_question
   @question = Question.find params[:id]
 end
 
+def find_property
+  @property = Property.find params[:property_id]
+end
+
 
 def question_params
   params.require(:question).permit(:question)
 end
-
-
-private
 
 # def authorize_user!
 #   redirect_to root_path, alert: "Not authorized!" unless can?(:crud, @question)
