@@ -1,12 +1,15 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
-
-
 <div class="container">
   <div class="show-property">
     <h1 class="mt-4"><%= @property.name %></h1>
-      <p><%= @property.description %> </p>
-    <p><small>Posted <%= time_ago_in_words(@property.created_at) %> ago </small></p>
+      <h4><%= @property.name %></h4>
+        <p class="text-card"><span class="bold">Property Description: </span><%= @property.description %></p> 
+        <p class="show-text"><span class="bold">Property Listing By: </span><%= @property.user.first_name %> <%= @property.user.last_name %>
+        <p><span class="bold">Price: </span><%= number_to_currency(@property.price) %></p> 
+        <p class="show-text"><span class="bold">Location: </span><%= @property.location %></p> 
+        <p class="show-text"><span class="bold">Amenities: </span><%= @property.amenities %></p> 
+        <p class="show-text"><span class="bold">Listed At: </span><%= time_ago_in_words @property.created_at %> ago</p> 
+        <p class="show-text"><span class="bold">Images: </span></p>
+        <%= image_tag(@property.image_url, class: "index-image")%>
 
     <% if can? :crud, @property %> 
       <div class="btn-pos">
@@ -23,9 +26,9 @@
     <% @questions.each do |question| %>
     <li>
       <%= question.question %>
-        <small>
-          questioned by <%= question.user.first_name %> <%= time_ago_in_words(question.created_at)%> ago
-        </small>
+        <div>
+          Asked by <%= question.user.first_name %> <%= time_ago_in_words(question.created_at)%> ago
+        </div>
         <br>
         <% if can? :crud, question %>
           <%= button_to "Delete", property_question_path(@property.id, question.id), method: :delete, form: {data: {turbo_confirm: "Are you sure?"}} %>

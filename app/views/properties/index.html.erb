@@ -1,10 +1,15 @@
 <div class="row justify-content-center m-4">
     <% @properties.each do |property| %>
-     <hr>
       <%= link_to property, class: "card flex-fill col-lg-3 col-md-4 col-12 p-4 mt-4 mx-2" do %>
         <h4><%= property.name %></h4>
         <p class="text-card"><%= property.description %></p> 
-      <p> Property Listing By: <%= property.user.first_name %> <%= property.user.last_name %> 
+        <p class="show-text"> Property Listing By: <%= property.user.first_name %> <%= property.user.last_name %>
+        <p class="show-text">Price: <%= property.price %></p> 
+        <p class="show-text"Location: <%= property.location %></p> 
+        <p class="show-text">Amenities: <%= property.amenities %></p> 
+        <p class="show-text">Listed At: <%= property.created_at %></p> 
+        <p class="show-text">Images</p>
+        <%= image_tag(property.image_url, class: "index-image")%>
     <% end %>   
     <% end %> 
 </div>
