@@ -1,6 +1,38 @@
-<h1> Name: <%=@property.name%></h1>
-<p> Description: <%=@property.description%></p>
-<p> Location: <%=@property.location%></p>
-<p> Price: <%=@property.price%></p>
-<p> Amenities: <%=@property.amenities%></p>
-<p> Landlord: <%=@property.user.first_name%> <%=@property.user.last_name%></p>
+<h1>Posts#show</h1>
+<p>Find me in app/views/posts/show.html.erb</p>
+
+
+<div class="container">
+  <div class="show-property">
+    <h1 class="mt-4"><%= @property.name %></h1>
+      <p><%= @property.description %> </p>
+    <p><small>Posted <%= time_ago_in_words(@property.created_at) %> ago </small></p>
+
+    <% if can? :crud, @property %> 
+      <div class="btn-pos">
+        <%= button_to 'Edit', edit_property_path(@property), method: :get, class: 'btn btn-outline-primary btn-marg mb-4' %> 
+
+        <%= button_to 'Delete', property_path(@property), method: :delete, class: "btn btn-outline-primary btn-marg mb-4", form: {data: {turbo_confirm: "Are you sure?"}} %>  
+    </div>
+    <% end %>
+  </div>  
+
+    <%= render 'questions/new_question' %> 
+
+  <ul>
+    <% @questions.each do |question| %>
+    <li>
+      <%= question.question %>
+        <small>
+          questioned by <%= question.user.first_name %> <%= time_ago_in_words(question.created_at)%> ago
+        </small>
+        <br>
+        <% if can? :crud, question %>
+          <%= link_to "Delete", property_question_path(@property.id, question.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+         <% end %> 
+        <br>
+        <br>
+      <% end %>
+    </li>
+  </ul>
+</div>

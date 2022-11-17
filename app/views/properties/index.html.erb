@@ -1,6 +1,11 @@
-<%@properties.each do |property|%>
-  <img src="<%=property.image_url%>" alt="">
-  <h3><%=link_to property.name, property_path(property.id)%></h3>
-  <p>Description: <%=property.description%></p>
-  <p>Price: <%=property.price%></p>
-<% end %>
+<div class="row justify-content-center m-4">
+    <% @properties.each do |property| %>
+     <hr>
+      <%= link_to property, class: "card flex-fill col-lg-3 col-md-4 col-12 p-4 mt-4 mx-2" do %>
+        <h4><%= property.name %></h4>
+        <p class="text-card"><%= property.description %></p> 
+      <p> Property Listing By: <%= property.user.first_name %> <%= property.user.last_name %> 
+    <% end %>   
+    <% end %> 
+</div>
+
