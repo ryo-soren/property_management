@@ -11,6 +11,19 @@
   </head>
 
   <body>
+     <body>
+
+      <!-- Rendering the Nav Bar -->
+    <%= render 'partials/navbar' %> 
+
+    <!-- Showing Flash Messages -->
+    <% flash.each do |type, message| %>
+      <div class="alert alert-info" role=alert >
+        <%= type + " ------- " + message %>
+      </div>
+    <% end %>  
+
     <%= yield %>
+  </body>
   </body>
 </html>
