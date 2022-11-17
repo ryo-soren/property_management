@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   resource :session, only:[:new, :create, :destroy]
 
   resources :users, only: [:new, :create] do
-    get "admin_panel", to: "users#admin_panel"
+    
   end
-  
+  get "admin_panel", to: "users#admin_panel"
+  get "customer_panel", to: "users#customer_panel"
+
   resources :properties do
     resources :questions, only:[:create, :destroy] do
       resources :answers, only: [:create] do
