@@ -1,4 +1,4 @@
-<h3>Questions</h3>
+
  <% if @question.errors.any? %>
   <ul>
     <% @question.errors.full_messages.each do |msg| %>
@@ -6,10 +6,11 @@
     <% end %> 
   </ul>
 <% end %> 
-
+<div class="my-3">
 <%= form_with(model:[@property, @question]) do |f| %>  
   <div>
-    <%= f.text_area :question, cols: 50, rows: 5, placeholder:"Whats your question regarding this property?" %>
+    <%= f.text_area :question, cols: 50, rows: 5, placeholder:"Whats your question about this property?" %>
   </div>
-  <%= f.submit "Submit", class: "btn btn-outline-primary btn-size-larger my-2" %>
+  <%= f.submit "Submit", class: "btn btn-outline-primary my-2" %>
 <% end %>
+</div>

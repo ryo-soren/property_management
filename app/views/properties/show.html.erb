@@ -20,26 +20,38 @@
   </div>  
 
 <%= render 'questions/new_question' %> 
-
   <ul>
     <% @questions.each do |question| %>
     <li>
+    <h3>Question</h3>
       <%= question.question %>
         <div>
           Asked by <%= question.user.first_name %> <%= time_ago_in_words(question.created_at)%> ago
         </div>
-
+        <%= form_with(url: property_question_answers_path(@property.id, question.id)) do |form| %>
+          <div>
+            <%= form.label :answer %>
+            <br>
+            <%= form.text_area :answer, cols:50, rows: 2 %>
+          </div>
+          <%= form.submit %>
+        <% end %>
+        <br>
         <% if can? :crud, question %>
           <%= button_to "Delete", property_question_path(@property.id, question.id), method: :delete, form: {data: {turbo_confirm: "Are you sure?"}} %>
          <% end %> 
-
-         
-        <%= question.answers.each do |a| %>          
-            <p><%= a.answer %> </p>        
-            <div>Answer by: </div>
-         <% end %> 
-
-        
+        <% question.answers.order(created_at: :desc).each do |answer|%>
+          <h5>Answer</h5>
+          <li class="my-2">
+            <small>
+              <%= answer.answer %>
+              <div>
+                Answered by <%= answer.user.first_name %> <%= time_ago_in_words(answer.created_at)%> ago
+              </div>
+            </small>
+          </li>
+        <% end %>
+        <br>
         <br>
       <% end %>
     </li>

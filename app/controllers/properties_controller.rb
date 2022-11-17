@@ -14,6 +14,7 @@ class PropertiesController < ApplicationController
       def show
         @questions = @property.questions.order(created_at: :desc)
         @question = Question.new
+        @answer = Answer.new
       end
 
       def new
