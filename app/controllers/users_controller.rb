@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+    before_action :authenticate_user!, only: [:customer_panel, :admin_panel]
+    before_action :check_admin, only: [:admin_panel]
+    before_action :check_customer, only: [:customer_panel]
+    
+    
+
     def new
         @user = User.new
     end
@@ -18,6 +24,10 @@ class UsersController < ApplicationController
         @user = current_user
     end
 
+    def customer_panel
+        @user = current_user
+    end
+
     private
 
     def user_params
@@ -29,4 +39,13 @@ class UsersController < ApplicationController
         :password_confirmation
         )
     end
+
+    def check_admin
+        redirect_to root_path, alert: "Not authorized" unless current_user.admin?
+    end
+
+    def check_customer
+        redirect_to root_path, alert: "Not authorized" unless !current_user.admin?
+    end
+  
 end
