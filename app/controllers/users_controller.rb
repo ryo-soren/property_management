@@ -14,6 +14,10 @@ class UsersController < ApplicationController
         end
     end
 
+    def admin_panel
+        @user = current_user
+    end
+
     private
 
     def user_params
