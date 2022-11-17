@@ -7,9 +7,9 @@ class Ability
 
     user ||= User.new
 
-    if user.admin?
-      can :manage, :all
-    end
+    # if user.admin?
+    #   can :manage, :all
+    # end
 
     alias_action :create, :read, :update, :delete, :to => :crud
 
@@ -22,7 +22,7 @@ class Ability
     end
 
     can :crud, Answer do |answer|
-      user.persisted?
+      user.persisted? && user.admin?
     end
 
   end
