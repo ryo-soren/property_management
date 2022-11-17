@@ -21,16 +21,16 @@ class AnswersController < ApplicationController
     end
   
    
-    def destroy
-      @answer = Answer.find params[:id]
-    #   if can?(:crud, @answer)
-        @answer.destroy
-        redirect_to question_path(@answer.question)
-        flash[:success] = "Answer deleted"
-    #   else
-    #     redirect_to root_path, alert: "Not athorized to change Answer!"
-    #   end
-    end
+    # def destroy
+    #   @answer = Answer.find params[:id]
+    # #   if can?(:crud, @answer)
+    #     @answer.destroy
+    #     redirect_to question_path(@answer.question)
+    #     flash[:success] = "Answer deleted"
+    # #   else
+    # #     redirect_to root_path, alert: "Not athorized to change Answer!"
+    # #   end
+    # end
     
     private
   
@@ -39,7 +39,7 @@ class AnswersController < ApplicationController
     end
    
     def answer_params
-      params.require(:answer).permit(:body)
+      params.require(:answer).permit(:answer)
     end
   
     # def authorize_user!
