@@ -28,7 +28,7 @@
         </small>
         <br>
         <% if can? :crud, question %>
-          <%= link_to "Delete", property_question_path(@property.id, question.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          <%= button_to "Delete", property_question_path(@property.id, question.id), method: :delete, form: {data: {turbo_confirm: "Are you sure?"}} %>
          <% end %> 
         <br>
         <br>
