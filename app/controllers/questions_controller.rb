@@ -49,8 +49,7 @@ end
 def update
   if @question.update(question_params)
     flash[:success] = "Question successfully updated"
-    redirect_to @question
-
+    redirect_to @property
   else
     flash[:error] = "Something went wrong"
     render :edit
