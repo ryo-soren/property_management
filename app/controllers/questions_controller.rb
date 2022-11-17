@@ -60,7 +60,7 @@ end
 # ------------->    DELETE    <-------------
 def destroy
   @question.destroy
-  redirect_to questions_path
+  redirect_to @property
 end
 
 private
@@ -78,9 +78,9 @@ def question_params
   params.require(:question).permit(:question)
 end
 
-# def authorize_user!
-#   redirect_to root_path, alert: "Not authorized!" unless can?(:crud, @question)
-# end
+def authorize_user!
+  redirect_to root_path, alert: "Not authorized!" unless can?(:crud, @question)
+end
 
 
 

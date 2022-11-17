@@ -49,15 +49,23 @@ users = User.all
         user: users.sample
     )
     if p.valid?
-        rand(1..5).times do
-            Question.create(question: Faker::Restaurant.review, property_id: p.id, user: users.sample)
-        end
+        rand(1..2).times do
+           q = Question.create(question: Faker::Restaurant.review, property_id: p.id, user: users.sample)
+
+           if q.valid?
+                    rand(1..5).times do
+                        Answer.create(answer: Faker::Restaurant.review, property_id: p.id, question_id: q.id, user: users.sample)
+
+                    end         
+            end
+        end    
     end
 end
 
 properties = Property.all
 questions = Question.all
-
+answers = Answer.all
 puts "Users: #{users.count}"
 puts "Properties: #{properties.count}"
 puts "Questions: #{questions.count}"
+puts "Answers: #{answers.count}"
