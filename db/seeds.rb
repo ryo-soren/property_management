@@ -5,15 +5,6 @@ Answer.destroy_all
 Application.destroy_all
 
 PASSWORD = "123"
-# 10.times do
-    
-#     User.create(
-#     first_name: "Admin",
-#     last_name: "User",
-#     sequence(:email){|n| "adminuser#{n}@user.com"}
-#     password: PASSWORD,
-#     admin?: true
-# )
 
 iterator = 0
 10.times do
@@ -40,16 +31,6 @@ end
 
 clients = User.where(admin?: false)
 admins = User.where(admin?: true)
-phone_arr = [
-        '(664) 204-6094)',
-        '(937) 358-4444',
-        '(854) 972-5243',
-        '(498) 564-7540',
-        '(678) 503-9730',
-        '(828) 436-9133',
-        '(479) 942-8373',
-        '(764) 433-6850'
-    ]
 
 20.times do
     created_at = Faker::Date.backward(days: 365 * 10)
@@ -94,14 +75,6 @@ phone_arr = [
 
     end
 end
-
-# super_user = User.create(
-#     first_name: "Admin",
-#     last_name: "User",
-#     email: "adminuser@user.com",
-#     password: PASSWORD,
-#     admin?: true
-# )
 
 super_user = User.create(
     first_name: "Admin",

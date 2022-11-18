@@ -1,0 +1,13 @@
+<div id="<%= dom_id property %>" class="row justify-content-center m-4">
+      <%= link_to property, class: "card flex-fill col-lg-3 col-md-4 col-12 p-4 mt-4 mx-2" do %>
+        <h4><%= property.name %></h4>
+        <p class="text-card"><span class="bold">Property Description: </span><%= property.description %></p> 
+        <p class="show-text"><span class="bold">Property Listing By: </span><%= property.user.first_name %> <%= property.user.last_name %>
+        <p class="show-text"><span class="bold">Price: </span><%= number_to_currency(property.price) %></p> 
+        <p class="show-text"><span class="bold">Location: </span><%= property.location %></p> 
+        <p class="show-text"><span class="bold">Amenities: </span><%= property.amenities %></p> 
+        <p class="show-text"><span class="bold">Listed At: </span><%= time_ago_in_words property.created_at %> ago</p> 
+        <p class="show-text"><span class="bold">Images: </span></p>
+        <%= image_tag(property.image_url, class: "index-image")%>
+    <% end %>
+</div>

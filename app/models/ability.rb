@@ -14,16 +14,16 @@ class Ability
     alias_action :create, :read, :update, :delete, :to => :crud
 
     can :crud, Property do |property|
-      user == property.user
+      user == property.user      
     end
 
     can :crud, Question do |question|
       user == question.user
     end
-
+    
     can :crud, Answer do |answer|
-      user.persisted? && user.admin?
-    end
+        user == user.admin? && answer.user
+    end  
 
   end
 end

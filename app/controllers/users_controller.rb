@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 
     def admin_panel
         @user = current_user
+        @properties = Property.where(:user_id => current_user.id)
     end
 
     def customer_panel
@@ -36,7 +37,8 @@ class UsersController < ApplicationController
         :last_name, 
         :email, 
         :password, 
-        :password_confirmation
+        :password_confirmation,
+        :admin?
         )
     end
 

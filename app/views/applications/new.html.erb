@@ -1,45 +1,32 @@
-<%= form_with(model: [@property, @application]) do |form| %>
-  <div>
-    <%= form.label :first_name %>
-    <br>
-    <%= form.text_field :first_name %>
-    <br>
+<%= form_with(model: [@property, @application]),  class: "formInput" do |form| %>
+<h1>New Application</h1>
+  <div class="formInput form-group">
+    <%= f.label :first_name %> 
+    <%= f.text_field :first_name %>
   </div>
-  <div>
-    <%= form.label :last_name %>
-    <br>
-    <%= form.text_field :last_name%>
-    <br>
+  <div class="formInput form-group">
+    <%= f.label :last_name %> 
+    <%= f.text_field :last_name %>
   </div>
-  <div>
-    <%= form.label :occupants %>
-    <br>
-    <%= form.number_field :occupants %>
-    <br>
+  <div class="formInput form-group">
+    <%= f.label :age%> 
+    <%= f.text_field :age%>
   </div>
-  <div>
-    <%= form.label :age %>
-    <br>
-    <%= form.number_field :age %>
-    <br>
+  <div class="formInput form-group">
+    <%= f.label :occupants%> 
+    <%= f.text_field :occupants%>
   </div>
-  <div>
-    <%= form.label :sin %>
-    <br>
-    <%= form.number_field :sin %>
-    <br>
+  <div class="formInput form-group">
+    <%= f.label :sin%> 
+    <%= f.text_field :sin%>
   </div>
-  <div>
-    <%= form.label :phone_number %>
-    <br>
-    <%= form.number_field :phone_number %>
-    <br>
+  <div class="formInput form-group">
+    <%= f.label :phone_number%> 
+    <%= f.text_field :phone_number%>
   </div>
-  <div>
-    <%= form.label :content %>
-    <br>
-    <%= form.text_area :content %>
-    <br>
+  <div class="formInput form-group">
+    <%= f.label :content%> 
+    <%= f.text_area :content, cols: 50, rows: 5, placeholder:"Whats your question about this property?"%>
   </div>
-  <%= form.submit %>
+<%= f.submit "Submit Application", class: "btn btn-outline-primary btn-size-larger btn-mg my-2" %> 
 <% end %>

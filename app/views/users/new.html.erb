@@ -24,5 +24,9 @@
     <%= f.label :password_confirmation%> 
     <%= f.text_field :password_confirmation%>
   </div>
+  <div class="formInput form-group">
+    <%= f.label "Are you planning on posting properties?" %> 
+    <%= f.check_box:admin?, checked:false %>
+  </div>
   <%= f.submit "Sign Up", class: "btn btn-outline-primary btn-size my-2" %> 
 <% end %>
