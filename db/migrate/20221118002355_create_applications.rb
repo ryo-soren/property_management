@@ -8,8 +8,8 @@ class CreateApplications < ActiveRecord::Migration[7.0]
       t.string :last_name
       t.integer :age
       t.integer :occupants
-      t.integer :sin
-      t.integer :phone_number
+      t.string :sin
+      t.string :phone_number
       t.text :content
       t.timestamps
     end
