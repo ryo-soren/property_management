@@ -1,9 +1,9 @@
 class ApplicationsController < ApplicationController
+
 before_action :authenticate_user!, only: [:new, :create, :index,:show,:update]
 before_action :find_property, only: [:new, :create]
 before_action :check_customer, only: [:new, :create]
 before_action :check_owner, only: [:index,:show,:update]
-
 
 
     def new
@@ -91,5 +91,4 @@ before_action :check_owner, only: [:index,:show,:update]
     def authorize_user!
         redirect_to root_path, alert: "Not authorized" unless can?(:crud, @property)
     end
-
 end
