@@ -15,10 +15,12 @@
           <%= button_to 'Delete', property_path(@property), method: :delete, class: "btn btn-outline-primary btn-marg mb-4", form: {data: {turbo_confirm: "Are you sure?"}} %>
         </div>
       <% end %>
+      
+      <% if !is_admin? %>  
       <br>
-
       <hr>
       <h2 class="apply"><%= link_to "Interested in living here?  Apply at this Link 🎉", ("/properties/#{@property.id}/applications/new") %> </h2>
+      <% end %>
       <hr>
       <br>
     </div>

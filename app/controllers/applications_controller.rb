@@ -42,7 +42,7 @@ before_action :check_owner, only: [:index,:show,:update]
             if @application.status == 2
             flash[:success] = "Application Rejected"
             end
-            redirect_to property_applications_path(@application.property)
+            redirect_to admin_panel_path
             
         else
             flash[:error] = "Something went wrong"
