@@ -1,7 +1,9 @@
 <% @user.questions.each do |q| %>
+
   <h4>Question asked: <%= link_to q.question, property_path(q.property.id)%></h4>
   <p>Property name: <%=q.property.name%></p>
   <br>
+
 <% end %>
 <br>
 <hr>

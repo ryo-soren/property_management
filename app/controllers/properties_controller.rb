@@ -8,7 +8,7 @@ class PropertiesController < ApplicationController
 
       def index
         if params[:query].present?
-            @properties = Property.where("location ILIKE ?", "%#{params[:query]}%")
+            @properties = Property.where("name ILIKE ? or location ILIKE ? or description ILIKE ? or amenities ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
         else
             @properties = Property.all.order(created_at: :desc)
         end
