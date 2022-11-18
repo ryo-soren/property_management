@@ -1,60 +1,58 @@
 <div class="container">
   <div class="show-property">
     <h1 class="mt-4"><%= @property.name %></h1>
-      <h4><%= @property.name %></h4>
-        <p class="text-card"><span class="bold">Property Description: </span><%= @property.description %></p> 
-        <p class="show-text"><span class="bold">Property Listing By: </span><%= @property.user.first_name %> <%= @property.user.last_name %>
-        <p><span class="bold">Price: </span><%= number_to_currency(@property.price) %></p> 
-        <p class="show-text"><span class="bold">Location: </span><%= @property.location %></p> 
-        <p class="show-text"><span class="bold">Amenities: </span><%= @property.amenities %></p> 
-        <p class="show-text"><span class="bold">Listed At: </span><%= time_ago_in_words @property.created_at %> ago</p> 
-        <p class="show-text"><span class="bold">Images: </span></p>
-        <%= image_tag(@property.image_url, class: "index-image")%>
-
-    <% if can? :crud, @property %> 
-      <div class="btn-pos">
-        <%= button_to 'Edit', edit_property_path(@property), method: :get, class: 'btn btn-outline-primary btn-marg mb-4' %> 
-
-        <%= button_to 'Delete', property_path(@property), method: :delete, class: "btn btn-outline-primary btn-marg mb-4", form: {data: {turbo_confirm: "Are you sure?"}} %>  
-    </div>
-    <% end %>
-  </div>  
-
-<%= render 'questions/new_question' %> 
-  <ul>
-    <% @questions.each do |question| %>
-    <li>
-    <h3>Question</h3>
-      <%= question.question %>
-        <div>
-          Asked by <%= question.user.first_name %> <%= time_ago_in_words(question.created_at)%> ago
+    <h4><%= @property.name %></h4>
+    <p class="text-card"><span class="bold">Property Description: </span><%= @property.description %></p>
+    <p class="show-text"><span class="bold">Property Listing By: </span><%= @property.user.first_name %> <%= @property.user.last_name %>
+      <p><span class="bold">Price: </span><%= number_to_currency(@property.price) %></p>
+      <p class="show-text"><span class="bold">Location: </span><%= @property.location %></p>
+      <p class="show-text"><span class="bold">Amenities: </span><%= @property.amenities %></p>
+      <p class="show-text"><span class="bold">Listed At: </span><%= time_ago_in_words @property.created_at %> ago</p>
+      <p class="show-text"><span class="bold">Images: </span></p>
+      <%= image_tag(@property.image_url, class: "index-image")%>
+      <%= button_to 'Apply', new_property_application_path(@property), method: :get, class: 'btn btn-outline-primary btn-marg mb-4' %>
+      <% if can? :crud, @property %>
+        <div class="btn-pos">
+          <%= button_to 'Edit', edit_property_path(@property), method: :get, class: 'btn btn-outline-primary btn-marg mb-4' %>
+          <%= button_to 'Delete', property_path(@property), method: :delete, class: "btn btn-outline-primary btn-marg mb-4", form: {data: {turbo_confirm: "Are you sure?"}} %>
         </div>
-        <%= form_with(url: property_question_answers_path(@property.id, question.id)) do |form| %>
-          <div>
-            <%= form.label :answer %>
-            <br>
-            <%= form.text_area :answer, cols:50, rows: 2 %>
-          </div>
-          <%= form.submit %>
-        <% end %>
-        <br>
-        <% if can? :crud, question %>
-          <%= button_to "Delete", property_question_path(@property.id, question.id), method: :delete, form: {data: {turbo_confirm: "Are you sure?"}} %>
-         <% end %> 
-        <% question.answers.order(created_at: :desc).each do |answer|%>
-          <h5>Answer</h5>
-          <li class="my-2">
-            <small>
-              <%= answer.answer %>
-              <div>
-                Answered by <%= answer.user.first_name %> <%= time_ago_in_words(answer.created_at)%> ago
-              </div>
-            </small>
-          </li>
-        <% end %>
-        <br>
-        <br>
       <% end %>
-    </li>
-  </ul>
-</div>
+    </div>
+    <%= render 'questions/new_question' %>
+    <ul>
+      <% @questions.each do |question| %>
+        <li>
+          <h3>Question</h3>
+          <%= question.question %>
+          <div>
+            Asked by <%= question.user.first_name %> <%= time_ago_in_words(question.created_at)%> ago
+          </div>
+          <%= form_with(url: property_question_answers_path(@property.id, question.id)) do |form| %>
+            <div>
+              <%= form.label :answer %>
+              <br>
+              <%= form.text_area :answer, cols:50, rows: 2 %>
+            </div>
+            <%= form.submit %>
+          <% end %>
+          <br>
+          <% if can? :crud, question %>
+            <%= button_to "Delete", property_question_path(@property.id, question.id), method: :delete, form: {data: {turbo_confirm: "Are you sure?"}} %>
+          <% end %>
+          <% question.answers.order(created_at: :desc).each do |answer|%>
+            <h5>Answer</h5>
+            <li class="my-2">
+              <small>
+                <%= answer.answer %>
+                <div>
+                  Answered by <%= answer.user.first_name %> <%= time_ago_in_words(answer.created_at)%> ago
+                </div>
+              </small>
+            </li>
+          <% end %>
+          <br>
+          <br>
+        <% end %>
+      </li>
+    </ul>
+  </div>

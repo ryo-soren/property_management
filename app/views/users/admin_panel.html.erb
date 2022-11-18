@@ -1,3 +1,7 @@
-<% @user.properties.each do |p| %>
-  <h2><%=p.name%></h2>
+<% @user.properties.each do |property| %>
+  <h2><%=property.name%></h2>
+  <p>Number of applications <%=property.applications.count%></p>
+  <% if property.applications.count > 0 %>
+    <p><%=link_to "View applications", property_applications_path(property)  %></p>
+  <% end %>
 <% end %>

@@ -1,0 +1,21 @@
+<% @applications.each do |a| %>
+  <h2>Application</h2>
+  <% if a.status == 0 %>
+    Pending
+  <% end %>
+  <% if a.status == 1 %>
+    Approved
+  <% end %>
+  <% if a.status == 2 %>
+    Rejected
+  <% end %>
+  <p><%=a.status%></p>
+  <p><%=a.first_name%></p>
+  <p><%=a.last_name%></p>
+  <p><%=a.age%></p>
+  <p><%=a.occupants%></p>
+  <p><%=a.phone_number%></p>
+  <p><%=a.sin%></p>
+  <p><%=a.content%></p>
+  <%=link_to "Enter Application", property_application_path(a.property.id,a.id)%>
+<% end %>
