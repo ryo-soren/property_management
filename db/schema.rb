@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_16_223903) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_18_002355) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_223903) do
     t.index ["property_id"], name: "index_answers_on_property_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "applications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "property_id", null: false
+    t.integer "status", default: 0
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "age"
+    t.integer "occupants"
+    t.integer "sin"
+    t.integer "phone_number"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_applications_on_property_id"
+    t.index ["user_id"], name: "index_applications_on_user_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -63,6 +80,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_223903) do
   add_foreign_key "answers", "properties"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "applications", "properties"
+  add_foreign_key "applications", "users"
   add_foreign_key "properties", "users"
   add_foreign_key "questions", "properties"
   add_foreign_key "questions", "users"

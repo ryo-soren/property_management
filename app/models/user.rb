@@ -6,6 +6,7 @@ class User < ApplicationRecord
     has_many :properties, dependent: :destroy
     has_many :questions, dependent: :destroy
     has_many :answers, dependent: :destroy
+    has_many :applications, dependent: :destroy
 
     validates :first_name, presence: :true
     validates :last_name, presence: :true
