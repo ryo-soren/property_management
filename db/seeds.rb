@@ -2,24 +2,25 @@ User.destroy_all
 Property.destroy_all
 Question.destroy_all
 Answer.destroy_all
+Application.destroy_all
 
 PASSWORD = "123"
 
-super_user = User.create(
-    first_name: "Admin",
-    last_name: "User",
-    email: "adminuser@user.com",
-    password: PASSWORD,
-    admin?: true
-)
+# super_user = User.create(
+#     first_name: "Admin",
+#     last_name: "User",
+#     email: "adminuser@user.com",
+#     password: PASSWORD,
+#     admin?: true
+# )
 
-super_user = User.create(
-    first_name: "Admin",
-    last_name: "User",
-    email: "test@test.com",
-    password: PASSWORD,
-    admin?: true
-)
+# super_user = User.create(
+#     first_name: "Admin",
+#     last_name: "User",
+#     email: "test@test.com",
+#     password: PASSWORD,
+#     admin?: true
+# )
 
 10.times do
     first_name = Faker::Name.first_name
@@ -49,23 +50,57 @@ users = User.all
         user: users.sample
     )
     if p.valid?
+
+        rand(1..7).times do
+            rand_user = users.sample
+            a = Application.create(
+                property_id: p.id, 
+                user: rand_user,
+                first_name: rand_user.first_name,
+                last_name: rand_user.last_name,
+                age: rand(20..60),
+                occupants: rand(1..8),
+                sin: 1000500007,
+                phone_number: Faker::PhoneNumber.phone_number,
+                content: Faker::Restaurant.review
+                )
+        end
+
         rand(1..2).times do
            q = Question.create(question: Faker::Restaurant.review, property_id: p.id, user: users.sample)
-
            if q.valid?
-                    rand(1..5).times do
-                        Answer.create(answer: Faker::Restaurant.review, property_id: p.id, question_id: q.id, user: users.sample)
+                rand(1..5).times do
+                    Answer.create(answer: Faker::Restaurant.review, property_id: p.id, question_id: q.id, user: users.sample)
 
-                    end         
+                end         
             end
-        end    
+        end 
+
     end
 end
+
+super_user = User.create(
+    first_name: "Admin",
+    last_name: "User",
+    email: "adminuser@user.com",
+    password: PASSWORD,
+    admin?: true
+)
+
+super_user = User.create(
+    first_name: "Admin",
+    last_name: "User",
+    email: "test@test.com",
+    password: PASSWORD,
+    admin?: true
+)
 
 properties = Property.all
 questions = Question.all
 answers = Answer.all
-puts "Users: #{users.count}"
+applications = Application.all
 puts "Properties: #{properties.count}"
+puts "Users: #{users.count}"
 puts "Questions: #{questions.count}"
 puts "Answers: #{answers.count}"
+puts "Applications: #{applications.count}"
