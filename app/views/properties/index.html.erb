@@ -1,20 +1,35 @@
-
 <div class="center-form">
   <%= form_with(url: properties_path, method: :get, class: "search-form", data: {turbo_frame: "properties"})  do |form|  %>
-
     <%= form.label :query, "Search by name, description, location or amenities", class: "block mb-2" %>
-
-      <%= form.text_field :query, class: "py-3 px-4 rounded border ring-0 focus:ring-4 focus:ring-orange-100 focus:shadow-none focus:border-orange-500 focus:outline-none" %>
-
-      <%= form.submit 'Search', class: "px-4 py-3 font-medium
-    bg-orange-300 text-neutal-900 rounded flex items-center cursor-pointer hover:bg-orange-400 focus:ring-4 ring-0 focus:ring-orange-100" %>
-
+    <%= form.text_field :query, class: "py-3 px-4 rounded border ring-0 focus:ring-4 focus:ring-orange-100 focus:shadow-none focus:border-orange-500 focus:outline-none" %>
+    <%= form.submit 'Search', class: "px-4 py-3 font-medium btn-top" %>
   <% end %>
 </div>
-
-<%# Render Property Partial %> 
-
-<div>
-  <%= render "properties", properties: @properties %>
-</div>
-
+<%# Render Property Partial %>
+<div class="container">
+  <div class="row">
+    <% @properties.each do |property|%>
+      <div class="card flex-fill col-lg-3 col-md-4 col-12 p-4 mt-4 mx-2">
+        <%= link_to property do %>
+          <h4><%= property.name %></h4>
+          <p class="text-card"><span class="bold">Property Description: </span><%= property.description %></p>
+          <p class="show-text"><span class="bold">Property Listing By: </span><%= property.user.first_name %> <%= property.user.last_name %>
+            <p class="show-text"><span class="bold">Price: </span><%= number_to_currency(property.price) %></p>
+            <p class="show-text"><span class="bold">Location: </span><%= property.location %></p>
+            <p class="show-text"><span class="bold">Amenities: </span><%= property.amenities %></p>
+            <p class="show-text"><span class="bold">Listed At: </span><%= time_ago_in_words property.created_at %> ago</p>
+            <p class="show-text"><span class="bold">Images: </span></p>
+            <% if property.errors.any? %>
+              <ul>
+                <% property.errors.full_messages.each do |msg| %>
+                  <li> <%= msg %></li>
+                <% end %>
+              </ul>
+            <% else %>
+              <%= image_tag(property.image_url, class: "index-image")%>
+            <% end %>
+          <% end %>
+        </div>
+      <%end%>
+    </div>
+  </div>

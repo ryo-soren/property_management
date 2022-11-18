@@ -1,41 +1,74 @@
-<% @user.questions.each do |q| %>
 
-  <h4>Question asked: <%= link_to q.question, property_path(q.property.id)%></h4>
-  <p>Property name: <%=q.property.name%></p>
-  <br>
-
-<% end %>
+  <div class="row justify-content-center m-4">
+    <h2>Questions Asked </h2>
+    <% @user.questions.each do |q| %>
+      <div class="card flex-fill col-lg-3 col-md-4 col-12 p-4 mt-4 mx-2">
+        <h4>Question asked: <%= link_to q.question, property_path(q.property.id)%></h4>
+        <p><span class="bold">Property name: </span><%=q.property.name%></p>
+        <br>
+      </div>
+    <% end %>
+    </div>
 <br>
 <hr>
-<div>
-  <h4>Pending Application</h4>
-  <%@user.applications.each do |application|%>
-    <% if application.status == 0 %>
-      <p>Applied to: <%=application.property.name%></p>
-      <p>Status: <%=application.status%></p>
-      <%= link_to "View Property", property_path(application.property.id)%>
+
+<div>  
+  
+  <div class="row justify-content-center m-4">
+  <h1>Your Applications</h1>
+  <br>
+  <h4>Pending Applications</h4>
+  <hr>
+    <%@user.applications.each do |application|%>
+        <% if application.status == 0 %>
+        <div class="card flex-fill col-lg-3 col-md-4 col-12 p-4 mt-4 mx-2">
+          <p class="bold"><span class="show-text">Applied to:</span> 
+            <p><span class="show-text">Property Name: </span><%=application.property.name%></p></p>
+            <p> <span class="show-text bold">Status:</span> Pending</p>
+          <%= link_to "View Property", property_path(application.property.id)%>
+          <%= image_tag(application.property.image_url, class: "small-image")%>
+      </div>
+        <% end %>
     <% end %>
-  <% end %>
+  </div>
+</div>
+
+<br>
+
+<div>
+  <div class="row justify-content-center m-4">
+  <h4>Approved Applications</h4>
+  <hr>
+    <%@user.applications.each do |application|%>
+        <% if application.status == 1 %>
+        <div class="card flex-fill col-lg-3 col-md-4 col-12 p-4 mt-4 mx-2">
+          <p class="bold"><span class="show-text">Applied to:</span> 
+            <p><span class="show-text">Property Name: </span><%=application.property.name%></p></p>
+            <p> <span class="show-text bold">Status:</span> Approved</p>
+          <%= link_to "View Property", property_path(application.property.id)%>
+          <%= image_tag(application.property.image_url, class: "small-image")%>
+      </div>
+        <% end %>
+    <% end %>
+  </div>
 </div>
 <br>
-<div>
-  <h4>Approved Application</h4>
-  <%@user.applications.each do |application|%>
-    <% if application.status == 1 %>
-      <p>Applied to: <%=application.property.name%></p>
-      <p>Status: <%=application.status%></p>
-      <%= link_to "View Property", property_path(application.property.id)%>
+
+<div class="row justify-content-center m-4">
+  <h4>Rejected Applications</h4>
+  <hr>
+    <%@user.applications.each do |application|%>
+        <% if application.status == 2 %>
+        <div class="card flex-fill col-lg-3 col-md-4 col-12 p-4 mt-4 mx-2">
+          <p class="bold"><span class="show-text">Applied to:</span> 
+            <p><span class="show-text">Property Name: </span><%=application.property.name%></p></p>
+            <p> <span class="show-text bold">Status:</span> Rejected</p>
+          <%= link_to "View Property", property_path(application.property.id)%>
+          <%= image_tag(application.property.image_url, class: "small-image")%>
+      </div>
+        <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
-<br>
-<div>
-  <h4>Rejected Application</h4>
-  <%@user.applications.each do |application|%>
-    <% if application.status == 2 %>
-      <p>Applied to: <%=application.property.name%></p>
-      <p>Status: <%=application.status%></p>
-      <%= link_to "View Property", property_path(application.property.id)%>
-    <% end %>
-  <% end %>
-</div>
+
+

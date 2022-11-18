@@ -1,7 +1,12 @@
-<% @user.properties.each do |property| %>
-  <h2><%=property.name%></h2>
-  <p>Number of applications <%=property.applications.count%></p>
-  <% if property.applications.count > 0 %>
-    <p><%=link_to "View applications", property_applications_path(property)  %></p>
+<div class="row justify-content-center m-4">
+  <h2>Your Rental Properties</h2>
+  <% @user.properties.each do |property| %>
+      <div class="card flex-fill col-lg-3 col-md-4 col-12 p-4 mt-4 mx-2">
+        <p><span class="bold">Property Name: </span><%=property.name%></p>
+        <p><span class="bold">Number of applications: </span><%=property.applications.count%></p>
+        <% if property.applications.count > 0 %>
+          <p><%=link_to "View applications", property_applications_path(property)  %></p>
+      <% end %>
+      </div>
   <% end %>
-<% end %>
+</div>

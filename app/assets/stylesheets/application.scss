@@ -289,3 +289,43 @@ a:hover {
     color: #BFA399;
 }
 
+.btn {
+  margin-top: 0.5em;
+}
+
+.btn-top {
+  margin-top: 0.5em;
+}
+
+nav {
+  border-bottom: 1px solid #EFEFEF;
+  box-shadow: 3px 2px 5px #B4A89A;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
+body {
+  padding-top: 8.5em;
+}
+
+.card {
+  box-shadow: 3px 2px 5px #B4A89A;
+}
+
+.bq {
+  margin-left: 1.5em;
+}
+
+.apply {
+  border: 1px solid #000;
+  box-shadow: 3px 2px 5px #B4A89A;
+  text-align: center;
+  padding: 0.5em;
+  border-radius: 3px;
+}
+
+.apply:hover {
+   box-shadow: 4px 3px 6px #B4A89A;
+}

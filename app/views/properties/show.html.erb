@@ -16,9 +16,10 @@
         </div>
       <% end %>
       <br>
-      <br>
-      <h2><%= link_to "Interested in living here?  Apply at this Link 🎉", ("/properties/#{@property.id}/applications/new") %> </h2>
-      <br>
+
+      <hr>
+      <h2 class="apply"><%= link_to "Interested in living here?  Apply at this Link 🎉", ("/properties/#{@property.id}/applications/new") %> </h2>
+      <hr>
       <br>
     </div>
     <%= render 'questions/new_question' %>
@@ -43,13 +44,13 @@
             <% end %>
           <% end %>
           <!-- Delete Button For Question Owner -->
-          <br>
           <% if can? :crud, question %>
             <%= button_to "Delete", property_question_path(@property.id, question.id), method: :delete, form: {data: {turbo_confirm: "Are you sure?"}} %>
           <% end %>
           <% question.answers.order(created_at: :desc).each do |answer|%>
-            <h5>Answer</h5>
+          <blockquote class="bq">
             <li class="my-2">
+            <h5>Answer</h5>
               <small>
                 <%= answer.answer %>
                 <div>
@@ -57,6 +58,7 @@
                 </div>
               </small>
             </li>
+            </blockquote>
           <% end %>
           <br>
           <br>
