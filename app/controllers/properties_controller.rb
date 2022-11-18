@@ -23,7 +23,7 @@ class PropertiesController < ApplicationController
 
       def create
           @property = Property.new(property_params)
-          @property.user = User.first
+          @property.user = current_user
 
           if @property.save
               flash[:success]= "Property Created"

@@ -1,0 +1,45 @@
+<%= form_with(model: [@property, @application]) do |form| %>
+  <div>
+    <%= form.label :first_name %>
+    <br>
+    <%= form.text_field :first_name %>
+    <br>
+  </div>
+  <div>
+    <%= form.label :last_name %>
+    <br>
+    <%= form.text_field :last_name%>
+    <br>
+  </div>
+  <div>
+    <%= form.label :occupants %>
+    <br>
+    <%= form.number_field :occupants %>
+    <br>
+  </div>
+  <div>
+    <%= form.label :age %>
+    <br>
+    <%= form.number_field :age %>
+    <br>
+  </div>
+  <div>
+    <%= form.label :sin %>
+    <br>
+    <%= form.number_field :sin %>
+    <br>
+  </div>
+  <div>
+    <%= form.label :phone_number %>
+    <br>
+    <%= form.number_field :phone_number %>
+    <br>
+  </div>
+  <div>
+    <%= form.label :content %>
+    <br>
+    <%= form.text_area :content %>
+    <br>
+  </div>
+  <%= form.submit %>
+<% end %>

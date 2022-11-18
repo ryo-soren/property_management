@@ -1,3 +1,7 @@
 <% @user.questions.each do |q| %>
-  <h2><%=q.questions%></h2>
+  <h2>Questions: <%=q.question%></h2>
+<% end %>
+<%@user.applications.each do |application|%>
+  <p>Applied to: <%=application.property.name%></p>
+  <%= link_to "View Property", property_path(application.property.id)%>
 <% end %>
