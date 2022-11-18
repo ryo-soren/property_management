@@ -18,7 +18,7 @@ before_action :check_owner, only: [:index,:show,:update]
             flash[:success] = "Application Successfully created"
             redirect_to @property
         else
-            flash[:error] = "Something went wrong"
+            flash.alert = @application.errors.full_messages.join(", ")
             render 'new', status: 303
         end
     end
@@ -77,10 +77,10 @@ before_action :check_owner, only: [:index,:show,:update]
     end
 
     def check_customer
-        redirect_to @property, alert: "Not authorized" unless !current_user.admin?
+        redirect_to @property, alert: "Not authorized" unless !current_user.is_admin
     end
     def check_admin
-        redirect_to root_path, alert: "Not authorized" unless current_user.admin?
+        redirect_to root_path, alert: "Not authorized" unless current_user.is_admin
     end
 
     def check_owner

@@ -13,7 +13,7 @@ iterator = 0
     last_name: "User",
     email: "adminuser#{iterator}@user.com",
     password: PASSWORD,
-    admin?: true
+    is_admin: true
     )
     iterator += 1
 end
@@ -29,8 +29,8 @@ end
     )
 end
 
-clients = User.where(admin?: false)
-admins = User.where(admin?: true)
+clients = User.where(is_admin: false)
+admins = User.where(is_admin: true)
 
 20.times do
     created_at = Faker::Date.backward(days: 365 * 10)
@@ -81,7 +81,7 @@ super_user = User.create(
     last_name: "User",
     email: "test@test.com",
     password: PASSWORD,
-    admin?: true
+    is_admin: true
 )
 
 properties = Property.all

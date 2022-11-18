@@ -26,8 +26,8 @@ def create
     redirect_to @property
 
   else
-    flash[:error] = "Something went wrong"
-    render 'new'
+    flash[:error] = @question.errors.full_messages.join(", ")
+    redirect_to "/properties/#{@property.id}"
   end
 end
 

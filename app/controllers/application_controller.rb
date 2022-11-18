@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
 
     def is_admin?
-        current_user.admin? == true
+        current_user.is_admin == true
     end
 
     helper_method :is_admin?

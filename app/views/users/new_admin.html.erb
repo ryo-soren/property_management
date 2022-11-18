@@ -1,7 +1,3 @@
-<% if @user.errors.any? %> 
-  <p> <%= @user.errors.full_messages.join(', ') %></p>
-<% end %>
-
 <%= form_with model: @user, class: "formInput" do |f| %>
   <div class="formInput form-group">
     <h1>Sign Up</h1>

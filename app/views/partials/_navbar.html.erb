@@ -17,11 +17,14 @@
   <br>
   <div class="nav-list">
     
-    <li class="nav-item"><%= link_to "Sign Up", new_user_path %></li>  
-    <li class="nav-item">
-      <% if(user_signed_in?) %> Hello <%= current_user.first_name %> <%=
-      button_to "Log Out", session_path, method: :delete %> <% else %> <%=
-      link_to "Sign In", new_session_path %> <% end %>
+    <% if(user_signed_in?) %> 
+      <li class="nav-item">Hello <%= current_user.first_name %> <%=
+      button_to "Log Out", session_path, method: :delete %>
+      </li> 
+      <% else %> 
+        <li class="nav-item"><%= link_to "Sign Up", new_user_path %></li>  
+        <li class="nav-item"><%= link_to "Sign In", new_session_path %> <% end %></li>
+
     </li>
   </div>
 </nav>
