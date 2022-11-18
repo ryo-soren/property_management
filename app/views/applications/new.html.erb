@@ -1,32 +1,32 @@
 <%= form_with(model: [@property, @application]) do |f| %>
-<h1>New Application</h1>
+  <h1>New Application</h1>
   <div class="formInput form-group">
-    <%= f.label :first_name %> 
+    <%= f.label :first_name %>
     <%= f.text_field :first_name %>
   </div>
   <div class="formInput form-group">
-    <%= f.label :last_name %> 
+    <%= f.label :last_name %>
     <%= f.text_field :last_name %>
   </div>
   <div class="formInput form-group">
-    <%= f.label :age%> 
+    <%= f.label :age%>
     <%= f.text_field :age%>
   </div>
   <div class="formInput form-group">
-    <%= f.label :occupants%> 
+    <%= f.label :occupants%>
     <%= f.text_field :occupants%>
   </div>
   <div class="formInput form-group">
-    <%= f.label :sin%> 
+    <%= f.label :sin%>
     <%= f.text_field :sin%>
   </div>
   <div class="formInput form-group">
-    <%= f.label :phone_number%> 
+    <%= f.label :phone_number%>
     <%= f.text_field :phone_number%>
   </div>
   <div class="formInput form-group">
-    <%= f.label :content%> 
+    <%= f.label :content%>
     <%= f.text_area :content, cols: 50, rows: 5, placeholder:"Whats your question about this property?"%>
   </div>
-<%= f.submit "Submit Application", class: "btn btn-outline-primary btn-size-larger btn-mg my-2" %> 
+  <%= f.submit "Submit Application", class: "btn btn-outline-primary btn-size-larger btn-mg my-2" %>
 <% end %>
