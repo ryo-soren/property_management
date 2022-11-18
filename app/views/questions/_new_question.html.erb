@@ -1,16 +1,11 @@
-
- <% if @question.errors.any? %>
-  <ul>
-    <% @question.errors.full_messages.each do |msg| %>
-      <li> <%= msg %></li>
-    <% end %> 
-  </ul>
-<% end %> 
-<div class="my-3">
-<%= form_with(model:[@property, @question]) do |f| %>  
+<% if !is_admin? %>  
   <div>
-    <%= f.text_area :question, cols: 50, rows: 5, placeholder:"Whats your question about this property?" %>
+  <h3>Your Question</h3>
+  <%= form_with(model:[@property, @question]) do |f| %>  
+    <div>
+      <%= f.text_area :question, cols: 50, rows: 5, placeholder:"Whats your question about this property?" %>
+    </div>
+    <%= f.submit "Submit", class: "btn btn-outline-primary btn-size-larger my-2" %>
+  <% end %>
   </div>
-  <%= f.submit "Submit", class: "btn btn-outline-primary btn-size-larger my-2" %>
 <% end %>
-</div>
