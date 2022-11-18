@@ -42,8 +42,8 @@ class PropertiesController < ApplicationController
               redirect_to @property
 
           else
-              flash[:error] = "Please check your inputs"
-              render 'new', status: 303
+            flash.alert = @property.errors.full_messages.join(", ")
+            render 'new', status: 303
           end
 
       end
@@ -87,7 +87,7 @@ class PropertiesController < ApplicationController
   end
 
   def check_admin
-        redirect_to root_path, alert: "Not authorized" unless current_user.admin?
+        redirect_to root_path, alert: "Not authorized" unless current_user.is_admin
   end
 
   def authorize_user!

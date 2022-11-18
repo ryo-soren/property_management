@@ -1,7 +1,3 @@
-<% if @user.errors.any? %> 
-  <p> <%= @user.errors.full_messages.join(', ') %></p>
-<% end %>
-
 <%= form_with model: @user, class: "formInput" do |f| %>
 <h1>Sign Up</h1>
   <div class="formInput form-group">
@@ -26,7 +22,7 @@
   </div>
   <div class="formInput form-group">
     <%= f.label "Are you planning on posting properties?" %> 
-    <%= f.check_box:admin?, checked:false %>
+    <%= f.check_box :is_admin, {}, true, false %>
   </div>
   <%= f.submit "Sign Up", class: "btn btn-outline-primary btn-size my-2" %> 
 <% end %>

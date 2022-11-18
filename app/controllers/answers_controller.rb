@@ -16,7 +16,8 @@ class AnswersController < ApplicationController
         redirect_to @property
       else
         @answers = @question.answers.order(created_at: :desc)
-        render '/properties/show', status: 303
+        flash.alert = @answer.errors.full_messages.join(", ")
+        render '/properties/show'
       end
     end
   

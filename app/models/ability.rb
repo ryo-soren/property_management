@@ -7,10 +7,6 @@ class Ability
 
     user ||= User.new
 
-    # if user.admin?
-    #   can :manage, :all
-    # end
-
     alias_action :create, :read, :update, :delete, :to => :crud
 
     can :crud, Property do |property|
@@ -22,7 +18,7 @@ class Ability
     end
     
     can :crud, Answer do |answer|
-        user == user.admin? && answer.user
+        user == user.is_admin && answer.user
     end  
 
   end
