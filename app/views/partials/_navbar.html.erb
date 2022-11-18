@@ -6,7 +6,8 @@
       <% if is_admin? %> 
         <div class="nav-item"><a href="/properties/new">List A New Property</a></div>                   
         <div class="nav-item"><a href="/admin_panel">Admin Panel</a></div>                   
-        <div class="nav-item"><a href="/applications">Rental Applications</a></div>                          
+      <% else %>
+        <div class="nav-item"><a href="/customer_panel">Customer Panel</a></div>                          
     <% end %> 
     <% end %> 
     

@@ -4,4 +4,6 @@ class Property < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :applications, dependent: :destroy
 
+  
+
 end
