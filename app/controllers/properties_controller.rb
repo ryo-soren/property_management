@@ -7,7 +7,19 @@ class PropertiesController < ApplicationController
 
 
       def index
-          @properties = Property.all.order(created_at: :desc)
+        if params[:query].present?
+            @properties = Property.where("location ILIKE ?", "%#{params[:query]}%")
+        else
+            @properties = Property.all.order(created_at: :desc)
+        end
+
+        # If the request is from the search turbo frame
+        if turbo_frame_request?
+            render partial: "properties", locals: { properties: @properties }
+        else
+            render :index
+        end
+
       end
 
 

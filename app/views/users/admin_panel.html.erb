@@ -1,3 +1,13 @@
+<h2>Pending Application</h2>
+
+
+
+<h2>My Listed Properties</h2>
 <% @user.properties.each do |p| %>
-  <h2><%=p.name%></h2>
+<div class="card">
+  <h5><%=p.name%></h5>
+  <h5><%=p.description%></h5>
+  <h5><%=p.price%></h5>
+  <h5><%=p.location%></h5>
+</div>
 <% end %>

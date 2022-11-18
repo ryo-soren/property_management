@@ -22,6 +22,14 @@ PASSWORD = "123"
 #     admin?: true
 # )
 
+phone_arr = ['(664) 204-6094)','(937) 358-4444',
+'(854) 972-5243',
+'(498) 564-7540',
+'(678) 503-9730',
+'(828) 436-9133',
+'(479) 942-8373',
+'(764) 433-6850']
+
 10.times do
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
@@ -35,6 +43,15 @@ end
 
 users = User.all
 
+
+super_user_ethan = User.create(
+    first_name: "Ethan",
+    last_name: "Gard",
+    email: "ethan@ethan.com",
+    password: PASSWORD,
+    admin?: true
+)
+
 20.times do
     created_at = Faker::Date.backward(days: 365 * 10)
 
@@ -47,7 +64,7 @@ users = User.all
         image_url: Faker::LoremFlickr.image,
         created_at: created_at,
         updated_at: created_at,
-        user: users.sample
+        user: super_user_ethan
     )
     if p.valid?
 
@@ -61,7 +78,7 @@ users = User.all
                 age: rand(20..60),
                 occupants: rand(1..8),
                 sin: 1000500007,
-                phone_number: Faker::PhoneNumber.phone_number,
+                phone_number: phone_arr[rand(0..10)],
                 content: Faker::Restaurant.review
                 )
         end
