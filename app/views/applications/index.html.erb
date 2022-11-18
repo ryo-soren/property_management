@@ -1,21 +1,35 @@
+
+<div class="row justify-content-center m-4">
+  <h2>Your Applications</h2>
 <% @applications.each do |a| %>
-  <h2>Application</h2>
+<div class="card flex-fill col-lg-3 col-md-4 col-12 p-4 mt-4 mx-2">
+  <h2>Application for Property: <%= a.property.name %>   </h2>
+  <hr>
+  <h3>Application from: <%= a.first_name %> <%= a.last_name %></h3>
+  <hr>
   <% if a.status == 0 %>
-    Pending
+    <p><span class="bold">Current Status: </span>Pending</p>
   <% end %>
   <% if a.status == 1 %>
-    Approved
+    <p><span class="bold">Current Status: </span>Approved</p>
   <% end %>
   <% if a.status == 2 %>
-    Rejected
+    <p><span class="bold">Current Status: </span>Rejected</p>
   <% end %>
-  <p><%=a.status%></p>
-  <p><%=a.first_name%></p>
-  <p><%=a.last_name%></p>
-  <p><%=a.age%></p>
-  <p><%=a.occupants%></p>
-  <p><%=a.phone_number%></p>
-  <p><%=a.sin%></p>
-  <p><%=a.content%></p>
-  <%=link_to "Enter Application", property_application_path(a.property.id,a.id)%>
+  <p><span class="bold">Client Name: </span><%=a.first_name%> <%=a.last_name%></p>
+  <p><span class="bold">Client Age: </span><%=a.age%></p>
+  <p><span class="bold">Number of Occupants: </span> <%=a.occupants%></p>
+  <p><span class="bold">Phone Number: </span><%= link_to a.phone_number %> </p>
+  <p><span class="bold">SIN: </span><%=a.sin%></p>
+  <p><span class="bold">Client Message: </span><%=a.content%></p>
+  <%= form_for([a.property, a]) do |fa| %>
+  <%= fa.hidden_field :status, :value => 1 %>
+  <%= fa.submit "Approve", class: "btn btn-large btn-success" %>
 <% end %>
+<%= form_for([a.property, a]) do |fr| %>
+  <%= fr.hidden_field :status, :value => 2 %>
+  <%= fr.submit "Reject", class: "btn btn-large btn-danger" %>
+<% end %>
+</div>
+<% end %>
+</div>
