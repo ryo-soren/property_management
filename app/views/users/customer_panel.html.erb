@@ -3,5 +3,5 @@
 <% end %>
 <%@user.applications.each do |application|%>
   <p>Applied to: <%=application.property.name%></p>
-  <%= link_to "View Property", property_path(application.property.id)%>
+  <%= link_to "View Property", property_path(application.property.id)%>  
 <% end %>
