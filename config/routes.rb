@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   get "customer_panel", to: "users#customer_panel"
 
   resources :properties do
-    resources :applications
-    resources :questions, only:[:create, :destroy] do
+    resources :applications, only: [:new, :create, :index, :show, :update]
+    resources :questions, only: [:create, :destroy] do
       resources :answers, only: [:create] do
       end
     end

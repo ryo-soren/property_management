@@ -34,8 +34,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_18_002355) do
     t.string "last_name"
     t.integer "age"
     t.integer "occupants"
-    t.integer "sin"
-    t.integer "phone_number"
+    t.string "sin"
+    t.string "phone_number"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,13 +1,7 @@
-<h2>Pending Application</h2>
-
-
-
-<h2>My Listed Properties</h2>
-<% @user.properties.each do |p| %>
-<div class="card">
-  <h5><%=p.name%></h5>
-  <h5><%=p.description%></h5>
-  <h5><%=p.price%></h5>
-  <h5><%=p.location%></h5>
-</div>
+<% @user.properties.each do |property| %>
+  <h2><%=property.name%></h2>
+  <p>Number of applications <%=property.applications.count%></p>
+  <% if property.applications.count > 0 %>
+    <p><%=link_to "View applications", property_applications_path(property)  %></p>
+  <% end %>
 <% end %>
