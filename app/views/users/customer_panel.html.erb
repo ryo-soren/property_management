@@ -1,7 +1,16 @@
 <% @user.questions.each do |q| %>
-  <h2>Questions: <%=q.question%></h2>
-<% end %>
-<%@user.applications.each do |application|%>
-  <p>Applied to: <%=application.property.name%></p>
-  <%= link_to "View Property", property_path(application.property.id)%>
+    <h2>Questions: <%=q.question%></h2>
+  <% end %>
+  <h1>Your Applications</h1>
+  <% @user.applications.each do |application| %> 
+  <%= link_to application.property do %>
+  <div class="card flex-fill col-lg-3 col-md-4 col-12 p-4 mt-4 mx-2">
+    <p>Applied to: 
+      <p><%=application.property.name%></p></p>
+    <%= link_to "View Property", property_path(application.property.id)%>
+
+    <%= image_tag(application.property.image_url, class: "small-image")%>
+    </div>
+
+  <% end %>
 <% end %>

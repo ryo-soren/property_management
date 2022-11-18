@@ -8,6 +8,15 @@
         <p class="show-text"><span class="bold">Amenities: </span><%= property.amenities %></p> 
         <p class="show-text"><span class="bold">Listed At: </span><%= time_ago_in_words property.created_at %> ago</p> 
         <p class="show-text"><span class="bold">Images: </span></p>
-        <%= image_tag(property.image_url, class: "index-image")%>
+
+         <% if property.errors.any? %>
+            <ul>
+              <% property.errors.full_messages.each do |msg| %>
+                <li> <%= msg %></li>
+              <% end %> 
+            </ul>
+            <% else %> 
+             <%= image_tag(property.image_url, class: "index-image")%>
+          <% end %>        
     <% end %>
 </div>
