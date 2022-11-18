@@ -5,8 +5,8 @@
     <% if current_user.present? %>    
       <% if is_admin? %> 
         <div class="nav-item"><a href="/properties/new">List A New Property</a></div>                   
-        <%= link_to "Admin Panel", ("/users/#{current_user.id}/admin_panel") %>   
-       
+        <div class="nav-item"><a href="/admin_panel">Admin Panel</a></div>                   
+        <div class="nav-item"><a href="/applications">Rental Applications</a></div>                          
     <% end %> 
     <% end %> 
     
