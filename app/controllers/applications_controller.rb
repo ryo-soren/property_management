@@ -1,8 +1,8 @@
 class ApplicationsController < ApplicationController
 
-before_action :authenticate_user!, only: [:new, :create, :index,:show,:update]
-before_action :find_property, only: [:new, :create]
-before_action :check_customer, only: [:new, :create]
+before_action :authenticate_user!, only: [:new,:create,:index,:show,:update]
+before_action :find_property, only: [:new,:create]
+before_action :check_customer, only: [:new,:create]
 before_action :check_owner, only: [:index,:show,:update]
 
 
@@ -14,7 +14,11 @@ before_action :check_owner, only: [:index,:show,:update]
         @application = Application.new(application_params)
         @application.property = @property
         @application.user = current_user
+        puts "*******"
+        puts @property.id
+        puts "*******"
         if @application.save 
+            @notification = Notification.create(application: @application, user_id: @property.user_id)
             flash[:success] = "Application Successfully created"
             redirect_to @property
         else
@@ -30,11 +34,15 @@ before_action :check_owner, only: [:index,:show,:update]
 
     def show
         @application = Application.find params[:id]
-
     end
 
     def update
         @application = Application.find params[:id]
+        
+        if @application.status != status_params
+            @notification = Notification.create(application: @application, user: current_user)
+        end
+        
         if @application.update(status_params)
             if @application.status == 1
             flash[:success] = "Application Approved"
@@ -57,8 +65,7 @@ before_action :check_owner, only: [:index,:show,:update]
 
     def status_params       
         params.require(:application).permit(:status)
-     end
- 
+    end
 
     def find_property
         @property = Property.find params[:property_id]
@@ -79,6 +86,7 @@ before_action :check_owner, only: [:index,:show,:update]
     def check_customer
         redirect_to @property, alert: "Not authorized" unless !current_user.is_admin
     end
+
     def check_admin
         redirect_to root_path, alert: "Not authorized" unless current_user.is_admin
     end
@@ -91,4 +99,6 @@ before_action :check_owner, only: [:index,:show,:update]
     def authorize_user!
         redirect_to root_path, alert: "Not authorized" unless can?(:crud, @property)
     end
+
+
 end
