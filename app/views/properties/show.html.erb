@@ -24,7 +24,11 @@
       <hr>
       <br>
     </div>
-    <%= render 'questions/new_question' %>
+
+    <% if user_signed_in?%>  
+        <%= render 'questions/new_question' %>
+    <% end %>
+
     <ul>
       <% @questions.each do |question| %>
         <li>
