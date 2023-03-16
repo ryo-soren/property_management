@@ -18,12 +18,16 @@
   <div class="nav-list">
     
     <% if(user_signed_in?) %> 
-      <li class="nav-item">Hello <%= current_user.first_name %> <%=
-      button_to "Log Out", session_path, method: :delete %>
+      <li class="nav-item">
+        Hello <%= current_user.first_name %>
+      </li> 
+      <li>
+        <%=button_to "Log Out", session_path, method: :delete %>
       </li> 
       <% else %> 
         <li class="nav-item"><%= link_to "Sign Up", new_user_path %></li>  
-        <li class="nav-item"><%= link_to "Sign In", new_session_path %> <% end %></li>
+        <li class="nav-item"><%= link_to "Sign In", new_session_path %></li>
+        <% end %>
 
     </li>
   </div>

@@ -1,4 +1,4 @@
-<% if !is_admin? %>  
+
   <div>
   <h3>Your Question</h3>
   <%= form_with(model:[@property, @question]) do |f| %>  
@@ -8,4 +8,3 @@
     <%= f.submit "Submit", class: "btn btn-outline-primary btn-size-larger my-2" %>
   <% end %>
   </div>
-<% end %>

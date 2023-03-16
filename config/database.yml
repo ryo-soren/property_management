@@ -83,4 +83,4 @@ production:
   <<: *default
   database: property_management_production
   username: property_management
-  password: <%= ENV["PROPERTY_MANAGEMENT_DATABASE_PASSWORD"] %>
+  password: <%= ENV["DATABASE_URL"] %>

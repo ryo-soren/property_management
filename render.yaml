@@ -1,0 +1,18 @@
+databases:
+  - name: property_management
+    databaseName: property_management
+    user: property_management
+
+services:
+  - type: web
+    name: property_management
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: property_management
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false

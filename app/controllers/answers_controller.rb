@@ -14,9 +14,10 @@ class AnswersController < ApplicationController
         flash[:success] = "Answer successfully created"
         redirect_to @property
       else
+        @questions = @property.questions
         @answers = @question.answers.order(created_at: :desc)
         flash.alert = @answer.errors.full_messages.join(", ")
-        render '/properties/show'
+        redirect_to "/properties/#{@property.id}"
       end
     end
   
