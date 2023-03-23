@@ -10,4 +10,21 @@ class Property < ApplicationRecord
   validates :description, presence: true
   validates :amenities, presence: true
 
+  validate :check_valid_image
+
+  private 
+
+  def check_valid_image
+
+    if image_url&.present?
+
+      type = FastImage.type(image_url)
+      
+      unless [:png, :jpg, :jpeg].include?(type)
+        self.errors.add(:image_url, "Must be a valid image file")
+      end
+    end
+
+  end
+
 end
